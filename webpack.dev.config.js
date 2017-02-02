@@ -1,6 +1,8 @@
 'use strict';
 const fs = require('fs');
+const glob = require("glob");
 const path = require('path');
+const _ = require('lodash');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -66,7 +68,7 @@ module.exports = {
                 test: /\.(svg|ttf|eot|woff|woff2)$/,
                 use: 'file-loader?name=fonts/[name].[ext]',
                 exclude: /\/assets\/images\//
-            }
+            },
         ]
     },
     plugins: [
@@ -88,7 +90,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery/dist/jquery.js',
             jQuery: 'jquery/dist/jquery.js',
-            'window.jQuery': 'jquery/dist/jquery.js'
+            'window.jQuery': 'jquery/dist/jquery.js',
+            _: "lodash"
         }),
         new ExtractTextPlugin({
             filename: "[name].css",
@@ -103,20 +106,13 @@ module.exports = {
             }
         }),
         new TsConfigPathsPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './index.html'
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'menu/menu.html',
-            template: './menu/menu.html'
-        }),
+        ...createHtmlLoaders(),
         new webpack.LoaderOptionsPlugin({
             debug: true,
             options: {
                 context: __dirname,
             }
-        }),
+        })
     ],
     devServer: {
         port: 7300,
@@ -145,4 +141,16 @@ module.exports = {
 
 function root(__path) {
     return path.join(__dirname, __path);
+}
+
+function createHtmlLoaders() {
+    let files = glob.sync("src/**/*.html", {ignore: ['src/modules/**']});
+    let loaders = [];
+    _.forEach(files, (file) => {
+        loaders.push(new HtmlWebpackPlugin({
+            filename: path.basename(file),
+            template: _.replace(file, 'src/', './')
+        }))
+    });
+    return loaders;
 }
