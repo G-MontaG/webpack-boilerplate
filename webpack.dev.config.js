@@ -73,6 +73,7 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new CleanWebpackPlugin(['./public']),
         new webpack.optimize.CommonsChunkPlugin({
@@ -117,13 +118,15 @@ module.exports = {
     devServer: {
         port: 7300,
         host: 'localhost',
+        publicPath: '/',
         historyApiFallback: true,
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000
         },
+        inline: true,
         compress: true,
-        contentBase: './src',
+        contentBase: path.join(__dirname, 'public'),
         hot: true
     },
     node: {
