@@ -62,7 +62,30 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
-                use: 'url-loader?name=images/[name].[hash:20].[ext]?limit=10000',
+                loaders: ['file-loader?name=images/[name].[hash:20].[ext]',
+                    {
+                        loader: 'image-webpack-loader',
+                        query: {
+                            progressive: true,
+                            mozjpeg: {
+                                quality: 65
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            svgo: {
+                                plugins: [
+                                    {
+                                        removeViewBox: false
+                                    },
+                                    {
+                                        removeEmptyAttrs: false
+                                    }
+                                ]
+                            }
+                        }
+                    }],
                 exclude: [/\/assets\/fonts\//, path.join(__dirname, "node_modules")]
             },
             {
@@ -152,7 +175,7 @@ module.exports = {
             options: {
                 context: __dirname,
                 postcss: [
-                    autoprefixer({browsers: ['last 3 version', 'iOS > 7', 'android > 5']})
+                    autoprefixer({browsers: ['last 3 version', 'IE >= 10', 'iOS >= 7', 'android >= 5']})
                 ],
             },
         }),
@@ -169,7 +192,7 @@ module.exports = {
         hints: "warning",
         maxAssetSize: 2000000,
         maxEntrypointSize: 4000000,
-        assetFilter: function(assetFilename) {
+        assetFilter: function (assetFilename) {
             return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
         }
     }
