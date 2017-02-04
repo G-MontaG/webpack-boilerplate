@@ -1,0 +1,23 @@
+/*
+ usage
+ @include placeholder {
+     color: $grey;
+ }
+*/
+@mixin placeholder() {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}

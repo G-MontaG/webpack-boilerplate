@@ -1,0 +1,47 @@
+@mixin margin-auto() {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin center-unknown() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center-known-w($width) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $width;
+  margin-left: -($width / 2);
+  transform: translateY(-50%);
+}
+
+@mixin center-known-h($height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: $height;
+  margin-top: -($height / 2);
+  transform: translateX(-50%);
+}
+
+@mixin center-known($width, $height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $width;
+  margin-left: -($width / 2);
+  height: $height;
+  margin-top: -($height / 2);
+}
+
+@mixin center-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
