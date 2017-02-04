@@ -152,7 +152,7 @@ module.exports = {
             options: {
                 context: __dirname,
                 postcss: [
-                    autoprefixer({browsers: ['last 3 version', 'iOS > 6', 'android > 4']})
+                    autoprefixer({browsers: ['last 3 version', 'iOS > 7', 'android > 5']})
                 ],
             },
         }),
