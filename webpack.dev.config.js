@@ -61,7 +61,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
-                use: 'url-loader?name=images/[name].[ext]?limit=10000',
+                use: 'file-loader?name=images/[name].[ext]',
                 exclude: [/\/assets\/fonts\//, path.join(__dirname, "node_modules")]
             },
             {
@@ -152,6 +152,7 @@ function createHtmlLoaders() {
     let loaders = [];
     _.forEach(files, (file) => {
         loaders.push(new HtmlWebpackPlugin({
+            favicon: path.join(__dirname, 'src/favicon.ico'),
             filename: path.basename(file),
             template: _.replace(file, 'src/', './')
         }))

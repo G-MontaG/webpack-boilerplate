@@ -114,6 +114,7 @@ module.exports = {
             $: 'jquery/dist/jquery.js',
             jQuery: 'jquery/dist/jquery.js',
             'window.jQuery': 'jquery/dist/jquery.js',
+            'Tether': 'tether/dist/js/tether.js',
             _: "lodash"
         }),
         new ExtractTextPlugin({
@@ -207,6 +208,7 @@ function createHtmlLoaders() {
     let loaders = [];
     _.forEach(files, (file) => {
         loaders.push(new HtmlWebpackPlugin({
+            favicon: path.join(__dirname, 'src/favicon.ico'),
             filename: path.basename(file),
             template: _.replace(file, 'src/', './')
         }))
