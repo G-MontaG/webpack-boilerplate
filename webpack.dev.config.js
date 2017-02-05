@@ -92,6 +92,7 @@ module.exports = {
             $: 'jquery/dist/jquery.js',
             jQuery: 'jquery/dist/jquery.js',
             'window.jQuery': 'jquery/dist/jquery.js',
+            'Tether': 'tether/dist/js/tether.js',
             _: "lodash"
         }),
         new ExtractTextPlugin({
