@@ -39,7 +39,7 @@ module.exports = {
             {
                 enforce: 'pre',
                 test: /\.ts$/,
-                loader: 'tslint-loader',
+                use: 'tslint-loader',
                 exclude: [/(node_modules)/, /\.(spec|e2e)\.ts$/],
             },
             {
@@ -49,21 +49,21 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: ['css-loader']
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader']
                 })
             },
             {
                 test: /\.(scss|sass)$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: ['css-loader?importLoaders=1',
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader?importLoaders=1',
                         'postcss-loader',
                         'sass-loader']
                 })
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
-                loaders: ['file-loader?name=images/[name].[hash:20].[ext]',
+                use: ['file-loader?name=images/[name].[hash:20].[ext]',
                     {
                         loader: 'image-webpack-loader',
                         query: {

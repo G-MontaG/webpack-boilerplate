@@ -39,7 +39,7 @@ module.exports = {
             {
                 enforce: 'pre',
                 test: /\.ts$/,
-                loader: 'tslint-loader',
+                use: 'tslint-loader',
                 exclude: [/(node_modules)/, /\.(spec|e2e)\.ts$/],
             },
             {
@@ -49,14 +49,14 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: ['css-loader?sourceMap=true']
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader?sourceMap=true']
                 })
             },
             {
                 test: /\.(scss|sass)$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: ['css-loader?sourceMap=true&importLoaders=1',
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader?sourceMap=true&importLoaders=1',
                         'sass-loader?sourceMap=true']
                 })
             },
@@ -111,7 +111,7 @@ module.exports = {
         new TsConfigPathsPlugin(),
         ...createHtmlLoaders(),
         new CopyWebpackPlugin([
-            { from: 'src/meta'}
+            { from: 'meta'}
         ]),
         new webpack.LoaderOptionsPlugin({
             debug: true,
