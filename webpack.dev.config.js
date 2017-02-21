@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -109,6 +110,9 @@ module.exports = {
         }),
         new TsConfigPathsPlugin(),
         ...createHtmlLoaders(),
+        new CopyWebpackPlugin([
+            { from: 'src/meta'}
+        ]),
         new webpack.LoaderOptionsPlugin({
             debug: true,
             options: {

@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const autoprefixer = require('autoprefixer');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -170,6 +171,9 @@ module.exports = {
         }),
         new TsConfigPathsPlugin(),
         ...createHtmlLoaders(),
+        new CopyWebpackPlugin([
+            { from: 'meta'}
+        ]),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false,
