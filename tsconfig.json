@@ -18,6 +18,7 @@
       "dom",
       "es6"
     ],
+    "skipLibCheck": true,
     "types": [
       "jquery"
     ],
