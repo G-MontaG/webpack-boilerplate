@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'auto-docs'),
-        publicPath: '/',
+        publicPath: '',
         filename: '[name].js'
     },
     resolve: {
