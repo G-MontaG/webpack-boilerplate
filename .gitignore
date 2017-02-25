@@ -64,6 +64,7 @@ deploy.json
 
 # Doc #
 /docs/
+/auto-docs/
 /documentation/
 
 # IDE #

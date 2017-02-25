@@ -4,8 +4,6 @@
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "noEmitHelpers": true,

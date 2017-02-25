@@ -20,11 +20,11 @@ module.exports = {
     entry: {
         main: './main.ts',
         vendors: './vendors.ts',
-        polyfills: './polyfills.ts',
+        //polyfills: './polyfills.ts',
     },
     output: {
         path: path.join(__dirname, 'public'),
-        publicPath: '',
+        publicPath: '/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js',
         sourceMapFilename: "[file].map"

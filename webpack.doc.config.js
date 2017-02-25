@@ -9,15 +9,32 @@ module.exports = {
     entry: {
         main: './main.ts',
         vendors: './vendors.ts',
-        polyfills: './polyfills.ts',
+        //polyfills: './polyfills.ts',
     },
     output: {
-        path: path.join(__dirname, docs),
-        filename: "[name].js"
+        path: path.join(__dirname, 'auto-docs'),
+        publicPath: '/',
+        filename: '[name].js'
     },
     resolve: {
         modules: ['src'],
         extensions: ['.ts']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ignore-loader'
+            },
+            {
+                test: /\.css$/,
+                use: 'ignore-loader'
+            },
+            {
+                test: /\.(scss|sass)$/,
+                use: 'ignore-loader'
+            },
+        ]
     },
     plugins: [
         new TypedocWebpackPlugin({
