@@ -73,7 +73,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new CleanWebpackPlugin(['./public']),
@@ -132,7 +131,7 @@ module.exports = {
         inline: true,
         compress: true,
         contentBase: path.join(__dirname, 'public'),
-        hot: true
+        hot: false
     },
     node: {
         global: true,
@@ -158,7 +157,8 @@ function createHtmlLoaders() {
         loaders.push(new HtmlWebpackPlugin({
             favicon: path.join(__dirname, 'src/favicon.ico'),
             filename: path.basename(file),
-            template: _.replace(file, 'src/', './')
+            template: _.replace(file, 'src/', './'),
+            attrs: ['img:src', 'link:href']
         }))
     });
     return loaders;
